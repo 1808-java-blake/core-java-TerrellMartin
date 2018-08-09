@@ -1,5 +1,6 @@
 package com.revature.eval.java.core;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,35 @@ public class Launcher {
 		System.out.println(isPangram("five boxing wizards jump quickly at it"));
 		System.out.println(wordCount("one fish two fish red fish blue fish"));
 		System.out.println(translate("apple"));
+		System.out.println("=========================================================================================================================");
+		System.out.println(solveWordProblem("what is 5 plus 7?"));
 		
+	}
+	public static int solveWordProblem(String string) {
+		// TODO Write an implementation for this method declaration
+		StringBuilder s = new StringBuilder(string);
+		s.deleteCharAt(string.length() - 1);
+		System.out.println(s);
+		ArrayList<Integer> listOfIntegers = new ArrayList<>();
+		//String[] s2 = s;
+//		for(int i = 0; i < s.length(); i++) {
+//
+//		}
+
+		return 0;
+	}
+	
+	public int calculateNthPrime(int i) {
+		// TODO Write an implementation for this method declaration
+		int pNum = 3;
+		int counter = 2;
+		if (i == 1) {
+			return 2;
+		}
+		while (counter < pNum) {
+			for(int j = pNum + 2; ;);
+		}
+		return pNum;
 	}
 	public static Map<String, Integer> wordCount(String string) {
 		String[] s = string.split(" ");
@@ -223,3 +252,57 @@ public class Launcher {
 	}
 
 }
+
+//class AtbashCipher {
+//	
+//	String ourWay = "abcdefghijklmnopqrstuvwxyz";
+//	String cipherWay = "zyxwvutsrqponmlkjihgfedcba";
+//	int size = 5;
+//	
+//	/**
+//	 * Question 13
+//	 * 
+//	 * @param string
+//	 * @return
+//	 */
+//	public static String encode(String string) {
+//		// TODO Write an implementation for this method declaration
+//		
+////		String filter = "";
+////		for (char letter : string.toCharArray()) {
+////			if(Character.isLetterOrDigit(letter)) {
+////				filter = filter + letter;
+////			}
+////		}
+////		String tocypher = "";
+////		for (char c : filter.toCharArray()) {
+////			int idx = ourWay.indexOf(string);
+////			
+////		}
+//		return null;
+//	}
+//
+//	/**
+//	 * Question 14
+//	 * 
+//	 * @param string
+//	 * @return
+//	 */
+//	public static String decode(String string) {
+//		// TODO Write an implementation for this method declaration
+//		StringBuilder d  = new StringBuilder();
+//		for (char c : string.toCharArray()) {
+//			if(Character.isLetter(c)) {
+//				int nc = ('Z' - c) + 'A';
+//				d.append((char) nc);
+//			}
+//			else {
+//				d.append(c);
+//			}
+//		}
+//		return d.toString();
+//	}
+//	public static void main(String[] args) {
+//		System.out.println(decode("vcvix rhn"));
+//	}
+//}

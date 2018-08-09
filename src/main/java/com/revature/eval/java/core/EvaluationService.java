@@ -7,8 +7,10 @@ import java.time.LocalTime;
 import java.time.temporal.Temporal;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -476,6 +478,7 @@ public class EvaluationService {
 	 * gur ynml qbt. ROT13 Gur dhvpx oebja sbk whzcf bire gur ynml qbt. gives The
 	 * quick brown fox jumps over the lazy dog.
 	 */
+	//DONE but CHECK THE TESTS!!!!!!!!!!!!!!!!! ensure that they are not appearing as failure.
 	static class RotationalCipher {
 		//convert the chars into the ASCII values.
 		private int key;
@@ -486,10 +489,33 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
-		}
+			String s = "";
+			int length = string.length();
+			for(int j = 0; j < length ; j++) {
+				if ((int)string.charAt(j) > 65 && (int)string.charAt(j) < 123 ) {
+					
+					char c = (char)(string.toLowerCase().charAt(j) + key);
+					if (c > 'z' ) 
+						s += (char)(string.charAt(j) - (26-key));
+					else
+						s += (char)(string.charAt(j) + key);
+				}
+				else {
+					if ((int)string.charAt(j) == 32) {
+						s += " ";
+					}
+					if ((int)string.charAt(j) == 39) {
+						s += "'";
+					}
+					if ((int)string.charAt(j) > 47 && (int)string.charAt(j) < 58) {
+						s += (char)(string.charAt(j));
+					}
 
+				}
+			}
+
+			return s;
+		}
 	}
 
 	/**
@@ -504,20 +530,18 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	//COMMMMEEEEE BAAACCCCCCKKK!!!!!! RECENT PROB
+	//COMMMMEEEEE BAAACCCCCCKKK!!!!!! RECENT PROB----------------------------------------------------------------
 	public int calculateNthPrime(int i) {
 		// TODO Write an implementation for this method declaration
-		int counter;
-		int num;
-		for(num = 2, counter = 0; counter < i; ++num) {
-			for(int j = 2; j < num; ++j) {
-				if (num % i == 0) {
-					++counter;
-				}
-			}
-			
+		int pNum = 3;
+		int counter = 2;
+		if (i == 1) {
+			return 2;
 		}
-		return 0;
+		while (counter < pNum) {
+			for(int j = pNum + 2; ;);
+		}
+		return pNum;
 	}
 
 	/**
@@ -545,6 +569,7 @@ public class EvaluationService {
 	 *
 	 */
 	static class AtbashCipher {
+		
 
 		/**
 		 * Question 13
@@ -684,6 +709,10 @@ public class EvaluationService {
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
+		//Set<Integer> multiple = new HashSet<>();
+//		//for (int j = 0; j < multiple; j++) {
+//			
+//		}
 		return 0;
 	}
 
