@@ -1,6 +1,12 @@
 package com.revature.eval.java.core;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.Temporal;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +19,7 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//DONE
 	public String reverse(String string) {
 		char[] reversed = new char[string.length()];
 		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
@@ -29,9 +36,12 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
+	//DONE
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String result = phrase.replaceAll("\\B.|\\P{L}",  "").toUpperCase();
+		
+		return result;
 	}
 
 	/**
@@ -43,6 +53,7 @@ public class EvaluationService {
 	 * different lengths.
 	 *
 	 */
+	//DONE
 	static class Triangle {
 		private double sideOne;
 		private double sideTwo;
@@ -84,18 +95,95 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
+			int count = 0;
+			boolean choice = false;
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (this.sideOne == this.sideTwo || this.sideOne == this.sideThree) {
+				count += 1;
+			}
+			if (this.sideTwo == this.sideThree || this.sideTwo == this.sideOne) {
+				count += 1;
+			}
+			if (this.sideThree == this.sideOne || this.sideThree == this.sideTwo) {
+				count += 1;
+				
+			}
+
+			switch (count) {
+			case 1:
+				choice = false;
+				break;
+			case 2:
+				choice = false;
+				break;
+			case 3:
+				choice = true;
+				break;
+			}
+			return choice;
+			
 		}
 
 		public boolean isIsosceles() {
+			int count = 0;
+			boolean choice = false;
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (this.sideOne == this.sideTwo || this.sideOne == this.sideThree) {
+				count += 1;
+			}
+			if (this.sideTwo == this.sideThree || this.sideTwo == this.sideOne) {
+				count += 1;
+			}
+			if (this.sideThree == this.sideOne || this.sideThree == this.sideTwo) {
+				count += 1;
+				
+			}
+
+			
+			switch (count) {
+			case 1:
+				choice = false;
+				break;
+			case 2:
+				choice = true;
+				break;
+			case 3:
+				choice = false;
+				break;
+			}
+			return choice;
 		}
 
 		public boolean isScalene() {
+			int count = 0;
+			boolean choice = false;
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (this.sideOne == this.sideTwo || this.sideOne == this.sideThree) {
+				count += 1;
+			}
+			if (this.sideTwo == this.sideThree || this.sideTwo == this.sideOne) {
+				count += 1;
+			}
+			if (this.sideThree == this.sideOne || this.sideThree == this.sideTwo) {
+				count += 1;
+			}
+
+			
+			switch (count) {
+			case 0:
+				choice = true;
+				break;
+			case 1:
+				choice = false;
+				break;
+			case 2:
+				choice = false;
+				break;
+			case 3:
+				choice = false;
+				break;
+			}
+			return choice;
 		}
 
 	}
@@ -115,9 +203,22 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//DONE
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		int sum = 0;
+		//do the scoreValues again..
+		int[] scoreValues = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
+		char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};  
+		string = string.toLowerCase();
+		for(int i = 0; i < string.length(); i++) {
+			for(int j = 0; j < 26; j++) {
+				if(string.charAt(i) == alphabet[j]) {
+					sum += scoreValues[j];
+				}
+			}
+		}
+		return sum;
 	}
 
 	/**
@@ -151,9 +252,13 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
+	//DONE
+	//ADD THE ILLEGAL EXCEPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		string = string.replaceAll("[/()-]", "");
+		string = string.replace(".", "");
+		string = string.replaceAll(" ", "");
+		return string;
 	}
 
 	/**
@@ -165,9 +270,24 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//Done
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String[] s = string.split(" ");
+		Map<String, Integer> mapper = new HashMap<String, Integer>();
+		int c;
+		
+		for (int i = 0; i < s.length; i++) {
+			if (mapper.containsKey(s[i])) {
+				c = mapper.get(s[i]);
+				mapper.put(s[i], c + 1);
+			}
+			else {
+				mapper.put(s[i], 1);
+			}
+		}
+
+		//System.out.println(mapper.entrySet());
+		return mapper;
 	}
 
 	/**
@@ -205,6 +325,7 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
+	//WHHHHHAAAAAAATTTTTTTTT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	static class BinarySearch<T> {
 		private List<T> sortedList;
 
@@ -245,9 +366,31 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//IDKKKKKKKKKKKKKKKKK!!!!!!!!
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+//		String pig = string.substring(1) + string.substring(0, 1) + "ay";
+//		
+//		return"%s " + pig;
+//		char[] vowel = {'a', 'e', 'i', 'o', 'u'};
+//		int b = 0; //beginning of word
+//		int fv = 0; //first vowel
+//		int last = string.length();
+//		for(int i = 0; i < last; i++) {
+//			char letter = Character.toLowerCase(string.charAt(i));
+//			if(Arrays.asList(vowel).contains(letter)) {
+//				fv = i;
+//				break;
+//			}
+//			
+//		}
+//		
+//		if(b != fv) {
+//			String starter = string.substring(fv, last);
+//			String ender = string.substring(b, fv) + "ay";
+//			return starter+ender;
+//		}
+		return string;
 	}
 
 	/**
@@ -265,9 +408,31 @@ public class EvaluationService {
 	 * @param input
 	 * @return
 	 */
+	//MISSING TWO TEST CASES!!!!!!!!!!!!!!!!!!!!!!
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		int check = 0 ;
+		int temp = 0;
+		Boolean decide;
+		int n = input;
+		
+		if (input < 10) {
+			decide = true;
+			return decide;
+		}
+		
+		while (input != 0) {
+			temp = input % 10;
+			check = check + temp*temp*temp;
+			input /= 10;
+		}
+		if (check == n) {
+			decide = true;
+		}
+		else {
+			decide = false;
+		}
+		return decide;
 	}
 
 	/**
@@ -312,6 +477,7 @@ public class EvaluationService {
 	 * quick brown fox jumps over the lazy dog.
 	 */
 	static class RotationalCipher {
+		//convert the chars into the ASCII values.
 		private int key;
 
 		public RotationalCipher(int key) {
@@ -338,8 +504,19 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
+	//COMMMMEEEEE BAAACCCCCCKKK!!!!!! RECENT PROB
 	public int calculateNthPrime(int i) {
 		// TODO Write an implementation for this method declaration
+		int counter;
+		int num;
+		for(num = 2, counter = 0; counter < i; ++num) {
+			for(int j = 2; j < num; ++j) {
+				if (num % i == 0) {
+					++counter;
+				}
+			}
+			
+		}
 		return 0;
 	}
 
@@ -414,9 +591,30 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//DONE
 	public boolean isValidIsbn(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		string = string.replace("-", "");
+		int l = string.length();
+		if (l != 10) {
+			return false;
+		}
+		int total = 0;
+		for(int i = 0; i < 9; i++) {
+			int num = string.charAt(i) - '0';
+			if(0 > num || 9 < num) {
+				return false;
+			}
+			total += (num * (10-i));
+		}
+		//numL is the last number which is the [9] of the string.
+		char numL = string.charAt(9);
+		if (numL != 'X' && (numL < '0' || numL > '9')) {
+			return false;
+		}
+		total += ((numL == 'X') ? 10 : (numL - '0'));
+
+		return (total % 11 == 0);
 	}
 
 	/**
@@ -432,9 +630,23 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//DONE
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		boolean[] marker = new boolean[26];
+		int theIndex = 0;
+		
+		for(int i = 0; i < string.length(); i++) {
+			if ('a' <= string.charAt(i) && string.charAt(i) <= 'z') {
+				theIndex = string.charAt(i) - 'a';
+			}
+			marker[theIndex]=true;
+		}
+		for(int i = 0; i <=25; i++) {
+			if (marker[i] == false)
+				return false;
+		}
+		return true;
 	}
 
 	/**
@@ -445,10 +657,17 @@ public class EvaluationService {
 	 * @param given
 	 * @return
 	 */
+	//DONE
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+        //In case,time not included
+        if(given instanceof LocalDate) {
+            LocalDateTime time = LocalDateTime.of((LocalDate) given, LocalTime.MIN);
+            return time.plus(Duration.ofSeconds(1000000000l));
+        }
+        //if time is included
+        LocalDateTime time = LocalDateTime.from(given);
+        return time.plus(Duration.ofSeconds(1000000000l));
+    }
 
 	/**
 	 * 18. Given a number, find the sum of all the unique multiples of particular
@@ -504,9 +723,26 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	//Not done yet, we have to find a way to pass the final two test cases.
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		int total = 0;
+		int num = 0;
+		Boolean choice = false;
+		string = string.replace(" ", "");
+		//Find a way to take away any special characters from this method. 
+		for (int i = string.length() - 1; i >= 0; i--) {
+			num = Integer.parseInt(string.substring(i,  i + 1));
+			if (choice) {
+				num *= 2;
+				if (num > 9) {
+					num = (num % 10)+1;
+				}
+			}
+			total += num;
+			choice = !choice;
+		}
+		return (total % 10 == 0);
 	}
 
 	/**
