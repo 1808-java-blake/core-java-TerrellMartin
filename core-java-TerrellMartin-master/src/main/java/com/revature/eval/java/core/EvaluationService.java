@@ -254,24 +254,13 @@ public class EvaluationService {
 	 */
 	//DONE
 	public String cleanPhoneNumber(String string) {
-		for(int i = 0; i < string.length(); i++){
-			if(Character.isDigit(string.charAt(i))){
-				if(string.length() > 11){
-					throw new IllegalArgumentException();
-				}
-				else {
-					string = string.replaceAll("[/()-]", "");
-					string = string.replace(".", "");
-					string = string.replaceAll(" ", "");
-				}
-				
-			}
-			else {
-				throw new IllegalArgumentException();
-			}
+		String digits = string.replaceAll("[^0-9]", "");
+		
+		//If digits are greater than 11 or less than 10 it is an invalid number.
+		if (digits.length() != 10){ 
+			throw new IllegalArgumentException();	
 		}
-
-		return string;
+		return digits;		
 	}
 
 	/**
@@ -343,8 +332,12 @@ public class EvaluationService {
 		public int indexOf(T t) {		
 			
 			 if(this.sortedList.contains(t)) {
+				 
 			  return  this.sortedList.indexOf(t);	 	  
-			 }else return -1;
+			 }
+			 else {
+				 return -1;
+			 }
 			 
 			 
 		}
